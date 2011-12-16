@@ -1,8 +1,8 @@
 require 'fileutils'
 
-require 'sc_docs/server'
+require 'ember_docs/server'
 
-module ScDocs
+module EmberDocs
   class Generator
 
     attr_reader :input_dirs
@@ -92,68 +92,4 @@ module ScDocs
 
   end
 
-  class ScGenerator < Generator
-
-    attr_reader :app_dir
-
-    attr_reader :project_name
-
-    def initialize(directories, options={})
-      super
-      @template = File.expand_path("../templates/sc_fixture", __FILE__)
-      @app_dir    = File.expand_path(options[:output_dir])
-      @output_dir = File.join(@app_dir, "apps", "docs", "fixtures")
-      @project_name = options[:project_name] || "docs_viewer"
-    end
-
-    def generate
-      prep
-      run_command
-      deploy
-    end
-
-    private
-
-      def prep
-        FileUtils.rm_rf app_dir
-        FileUtils.mkdir_p app_dir
-        # This is stupid, but necessary to copy only the contents
-        Dir[File.expand_path("../docs/*", __FILE__)].each{|f| FileUtils.cp_r f, app_dir }
-      end
-
-      def run_server
-        # TODO: Run SC Inline
-        Dir.chdir app_dir
-        system("sc-server --port=9292")
-      end
-
-      def deploy
-        require 'tempfile' # For Dir.tmpdir
-
-        tmp_path = File.join(Dir.tmpdir, "docs#{rand(100000)}")
-
-        FileUtils.mv app_dir, tmp_path
-
-        Dir.chdir tmp_path
-
-        build_cmd = "sc-build -r --languages=en --build-targets=docs --build=#{project_name}"
-
-        puts "Deploying...\n\n"
-
-        puts "#{build_cmd}\n\n" if verbose
-        verbose ? system(build_cmd) : `#{build_cmd}`
-
-        FileUtils.rm_rf app_dir
-        FileUtils.mkdir_p app_dir
-
-        FileUtils.cp_r File.join(tmp_path, "tmp", "build", "sc_docs"), app_dir
-        FileUtils.cp File.join(app_dir, "sc_docs", "docs", "en", project_name, "index.html"), app_dir
-
-        puts "Deployed"
-
-      ensure
-        FileUtils.rm_rf tmp_path
-      end
-
-  end
 end

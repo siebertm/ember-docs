@@ -1,17 +1,17 @@
 lib = File.expand_path('../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
 
-require 'sc_docs/version'
+require 'ember_docs/version'
 
 Gem::Specification.new do |s|
-  s.name        = "sc-docs"
-  s.version     = ScDocs::VERSION
+  s.name        = "ember-docs"
+  s.version     = EmberDocs::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Majd Taby", "Peter Wagenet"]
-  s.email       = ["majd@sproutcore.com", "peterw@sproutcore.com"]
+  s.email       = ["majd@sproutcore.com", "peter.wagenet@gmail.com"]
   s.homepage    = "http://sproutcore.com"
-  s.summary     = %q{Docs Generator for SproutCore}
-  s.description = %q{A tool to generate docs for SproutCore and SproutCore applications.}
+  s.summary     = %q{Docs Generator for Ember}
+  s.description = %q{A tool to generate docs for Ember and Ember applications.}
 
   s.required_rubygems_version = ">= 1.3.6"
 
@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.files              = `git ls-files`.split("\n")
   s.test_files         = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables        = %w(sc-docs)
+  s.executables        = %w(ember-docs)
   s.require_paths      = ["lib"]
 end
 

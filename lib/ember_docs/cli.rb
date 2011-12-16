@@ -1,8 +1,8 @@
 require 'thor'
 
-require 'sc_docs/generator'
+require 'ember_docs/generator'
 
-module ScDocs
+module EmberDocs
   class CLI < Thor
 
     class_option :update,     :aliases => ['-u'], :type => :boolean, :default => false,
@@ -15,7 +15,7 @@ module ScDocs
     method_option :output_dir, :aliases => ['-o'], :type => :string, :required => true,
       :banner => "Directory to output docs to"
     method_option :project, :aliases => ['-p'], :type => :string,
-      :banner => "SproutCore Project Name"
+      :banner => "Ember Project Name"
     def generate(*directories)
       raise "At least one directory is required" if directories.empty?
       puts "Generating Documentation...\n\n"
@@ -41,7 +41,7 @@ module ScDocs
 
       def generator(directories)
         opts = options.merge(:output_dir => output_dir)
-        (opts[:template] ? HtmlGenerator : ScGenerator).new(directories, opts)
+        HtmlGenerator.new(directories, opts)
       end
 
       def update_repo(directories)

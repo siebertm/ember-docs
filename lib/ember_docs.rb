@@ -1,0 +1,3 @@
+module EmberDocs
+
+end

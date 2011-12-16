@@ -1,6 +1,6 @@
 require 'rack'
 
-module ScDocs
+module EmberDocs
   class Server < ::Rack::Server
     def initialize(directory)
       @directory = directory

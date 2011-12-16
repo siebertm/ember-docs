@@ -1,37 +1,26 @@
-SproutCore Documentation Generator
-==================================
+Ember Documentation Generator
+=============================
 
-A tool to generate documentation for the SproutCore framework and SproutCore projects, using the JSDoc format.
+A tool to generate documentation for the Ember framework and Ember projects, using the JSDoc format.
+
+Forked from the SproutCore Docs Generator.
 
 **Authors**: Majd Taby, Peter Wagenet
 
 Usage
 -----
 
-    gem install sc-docs
-
-*NOTE: If you are not using the latest version of SproutCore, the
-built-in sc-docs command may conflict. This has been fixed in the newest
-versions of SC.*
+    gem install ember-docs
 
 ### Basic
 
-    sc-docs preview INPUT_DIRECTORY_PATH
+    ember-docs preview INPUT_DIRECTORY_PATH
 
-This documents the specified directory and then runs a preview sc-server instance.
+This documents the specified directory and then runs a preview server.
 
 ### Deploy
 
-    sc-docs generate INPUT_DIRECTORY_PATH -o OUTPUT_DIRECTORY_PATH
-
-The generate command runs sc-build and deploys to the specified directory.
-
-### HTML Templates
-
-    sc-docs generate INPUT_DIRECTORY_PATH -o OUTPUT_DIRECTORY_PATH -t TEMPLATE_PATH
-
-
-By default sc-docs assumes that you want to generate docs for the SproutCore based Doc Viewer. However, if you pass a template it will generate a standard HTML output.
+    ember-docs generate INPUT_DIRECTORY_PATH -o OUTPUT_DIRECTORY_PATH -t TEMPLATE_PATH
 
 Dependencies
 ------------
@@ -40,10 +29,6 @@ Dependencies
 
 Templates
 ---------
-
-### sc_fixture
-
-Generates the docs in JSON format for use within an SC based viewer app.
 
 ### docs.sproutcore.com
 
