@@ -6,19 +6,17 @@ module EmberDocs
   class Generator
 
     attr_reader :input_dirs
-
     attr_reader :output_dir
-
     attr_reader :template
-
     attr_reader :smartdown
-
     attr_reader :verbose
+    attr_reader :exclude
 
     def initialize(directories, options={})
       @input_dirs = directories
       @output_dir = File.expand_path(options[:output_dir])
       @smartdown  = false
+      @exclude    = options[:exclude]
       @verbose    = options[:verbose]
     end
 
@@ -27,6 +25,7 @@ module EmberDocs
         run_js_path = File.expand_path("../../../vendor/jsdoc/app/run.js", __FILE__)
         command = "#{run_js_path} -a -v -r=20 -t=\"#{template}\" #{input_dirs.map{|d| %{"#{d}"} }.join(' ')} " <<
                       "-d=\"#{output_dir}\" -f=class.js -l=Docs.Class"
+        command << exclude.map{|e| %{ -E="#{e}"} }.join if exclude
         command << " --smartdown" if smartdown
         command
       end

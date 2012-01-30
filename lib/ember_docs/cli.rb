@@ -9,6 +9,8 @@ module EmberDocs
       :banner => "If input is a git repo, pull and rebase"
     class_option :template,   :aliases => ['-t'], :type => :string,
       :banner => "Path to jsdoc template (forces HTML output)"
+    class_option :exclude,    :aliases => ['-E'], :type => :array,
+      :banner => "Regexps to exclude"
     class_option :verbose,    :aliases => ['-v'], :type => :boolean, :default => false
 
     desc "generate [DIRECTORIES...]", "Generate docs"
