@@ -347,7 +347,7 @@ section#list header {
   margin: 10px 0;
 }
 #documentation h2 a{
-  color: #62C439;
+  color: #CD4F1A;
 }
 h1 {
   font-weight: bold;
@@ -418,6 +418,7 @@ dd {
 
 #documentation p {
   margin: 10px 0 10px 0;
+  color: #000000;
 }
 #documentation ul {
   list-style-type: square;
